@@ -11,6 +11,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import SendIcon from '@mui/icons-material/Send';
 import emailjs from '@emailjs/browser';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 // Inline Lottie-like animated SVG for contact section
@@ -78,6 +79,7 @@ const socials = [
 ];
 
 const Contact = () => {
+  console.log("ENV:", import.meta.env);
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const formRef = useRef(null);
@@ -125,15 +127,15 @@ const Contact = () => {
     setSending(true);
   
     emailjs.send(
-      "service_a974j9b",   // ✅ your service ID
-      "template_nac5evs",  // ❗ replace this
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,  // ❗ replace this
       {
         from_name: formData.name,
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
       },
-      "R2KhZpQ9Q8SwnmxOF"    // ❗ replace this
+      process.env.REACT_APP_EMAILJS_PUBLIC_KEY    // ❗ replace this
     )
     .then(() => {
       setSending(false);
