@@ -65,4 +65,4 @@ npm run build
 ```
 
 ---
-Made with ❤️ | Devansh Prajapati Portfolio
+
